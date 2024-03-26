@@ -24,13 +24,13 @@ impl RSAEncrytion for RSA {
                         Ok((private_key,public_key))
                     },
                     Err(e) => {
-                        error!("Error : {e}");
+                        error!("public_key() : {e}");
                         Err("Faile to generate public key!.")
                     }
                 }
             },
             Err(e) =>{
-                error!("Error : {e}");
+                error!("public_key() : {e}");
                 Err("Failed to load private key from PEM!.")
             }
         }
@@ -45,13 +45,13 @@ impl RSAEncrytion for RSA {
                         Ok(key.to_string())
                     },
                     Err(e) => {
-                        error!("Error : {e}");
+                        error!("private_key() : {e}");
                         Err("Failed to print to PEM")
                     }
                 }
             },
             Err(e) =>{
-                error!("Error : {e}");
+                error!("private_key() : {e}");
                 Err("Failed to generate a private key!.")
             }
         }
@@ -66,13 +66,13 @@ impl RSAEncrytion for RSA {
                         Ok(encrypted_messages)
                     },
                     Err(e) => {
-                        error!("Error : {e}");
+                        error!("encrypt() : {e}");
                         Err("Failed to encrypt message!.")
                     }
                 }
             },
             Err(e) => {
-                error!("Error : {e}");
+                error!("encrypt() : {e}");
                 Err("Failed to load public key PEM")
             }
         }
@@ -88,19 +88,19 @@ impl RSAEncrytion for RSA {
                                 Ok(message)
                             },
                             Err(e) => {
-                                error!("Error : {e}");
+                                error!("decrypt() : {e}");
                                 Err("Failed to convert bytes to string!.")
                             }
                         }
                     },
                     Err(e) => {
-                        error!("Error : {e}");
+                        error!("decrypt() : {e}");
                         Err("Failed to decrypt!.")
                     }
                 }
             },
             Err(e) => {
-                error!("Error : {e}");
+                error!("decrypt() : {e}");
                 Err("Failed to load private key from PEM!.")
             }
         }
