@@ -1,4 +1,4 @@
-use log::{info, warn,error};
+use log::{error};
 use crate::adapter::{interface::RSAEncrytion, rsa_encryption::RSA};
 
 pub struct Encryption {
@@ -19,13 +19,13 @@ impl Encryption {
                         (private_key,public_key)
                     },
                     Err(_e) =>{
-                        println!("generate_keys() - {}",_e);
+                        error!("generate_keys() - {}",_e);
                         ("".to_string(),"".to_string())
                     }
                 }
             },
             Err(_e) =>{
-                println!("generate_keys() - {}",_e);
+                error!("generate_keys() - {}",_e);
                 ("".to_string(),"".to_string())
             }
         }
@@ -37,7 +37,7 @@ impl Encryption {
                 public_key
             },
             Err(_e) =>{
-                println!("generate_public_key() - {}",_e);
+                error!("generate_public_key() - {}",_e);
                 "".to_string()
             }
         }
@@ -47,7 +47,7 @@ impl Encryption {
         match self.crypto.encrypt(message, public_key) {
             Ok(encrypted_message) => encrypted_message,
             Err(_e) => {
-                println!("encrypt_message() - {}",_e);
+                error!("encrypt_message() - {}",_e);
                 vec![]
             }
         }
@@ -57,7 +57,7 @@ impl Encryption {
         match self.crypto.decrypt(encrypted_message, private_key) {
             Ok(message) => message,
             Err(_e) => {
-                println!("decrypt_message() - {}",_e);
+                error!("decrypt_message() - {}",_e);
                 "".to_string()
             }
         }
